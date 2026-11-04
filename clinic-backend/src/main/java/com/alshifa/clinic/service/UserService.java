@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -35,20 +37,13 @@ public class UserService {
 
         UserRole requestedRole = request.getRole();
 
-        // ADMIN can create DOCTOR or STAFF accounts.
-        // DOCTOR can create STAFF accounts only.
         if (creatorRole == UserRole.ADMIN) {
-            if (requestedRole == UserRole.ADMIN) {
-                throw new ResponseStatusException(
-                        HttpStatus.FORBIDDEN,
-                        "Creating another ADMIN account is not allowed"
-                );
-            }
+            // Admins may create ADMIN, DOCTOR, and STAFF accounts.
         } else if (creatorRole == UserRole.DOCTOR) {
-            if (requestedRole != UserRole.STAFF) {
+            if (requestedRole != UserRole.STAFF && requestedRole != UserRole.DOCTOR) {
                 throw new ResponseStatusException(
                         HttpStatus.FORBIDDEN,
-                        "DOCTOR can create STAFF accounts only"
+                        "DOCTOR can create DOCTOR or STAFF accounts only"
                 );
             }
         } else {
@@ -70,14 +65,69 @@ public class UserService {
         return userRepository.save(user);
     }
     public java.util.List<User> getAllUsers() {
-        return userRepository.findAllByOrderByIdAsc();
+        return userRepository.findAllByDeletedFalseOrderByIdAsc();
+    }
+
+    public List<User> getUsersVisibleTo(UserRole currentRole) {
+        if (currentRole == UserRole.ADMIN) {
+            return getAllUsers();
+        }
+        if (currentRole == UserRole.DOCTOR) {
+            return getAllUsers().stream()
+                    .filter(user -> user.getRole() == UserRole.DOCTOR
+                            || user.getRole() == UserRole.STAFF)
+                    .toList();
+        }
+        throw new ResponseStatusException(
+                HttpStatus.FORBIDDEN,
+                "You are not allowed to view user accounts"
+        );
+    }
+
+    public User softDeleteUser(Long userId, UserRole currentRole, String actorEmail) {
+        if (currentRole != UserRole.ADMIN && currentRole != UserRole.DOCTOR) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "You are not allowed to delete user accounts"
+            );
+        }
+
+        User user = userRepository.findByIdAndDeletedFalse(userId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "User not found"
+                ));
+
+        if (user.getEmail().equalsIgnoreCase(actorEmail)) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "You cannot delete your own account"
+            );
+        }
+        if (currentRole == UserRole.DOCTOR && user.getRole() == UserRole.ADMIN) {
+            throw new ResponseStatusException(
+                    HttpStatus.FORBIDDEN,
+                    "Doctors cannot delete admin accounts"
+            );
+        }
+        if (user.getRole() == UserRole.ADMIN && user.isEnabled()
+                && userRepository.countByRoleAndEnabledTrueAndDeletedFalse(UserRole.ADMIN) <= 1) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "At least one enabled admin account must remain"
+            );
+        }
+
+        user.setEnabled(false);
+        user.setDeleted(true);
+        return userRepository.save(user);
     }
     public User updateUserStatus(
             Long userId,
             boolean enabled,
             UserRole currentRole) {
 
-        User user = userRepository.findById(userId)
+        User user = userRepository.findByIdAndDeletedFalse(userId)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "User not found"

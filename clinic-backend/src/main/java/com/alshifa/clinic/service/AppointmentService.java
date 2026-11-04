@@ -34,13 +34,13 @@ public class AppointmentService {
     }
 
     public List<Appointment> getAllAppointments() {
-        return appointmentRepository.findAll();
+        return appointmentRepository.findByDeletedFalseOrderByCreatedAtDescIdDesc();
     }
     public Appointment updateAppointmentStatus(
             Long id,
             AppointmentStatus newStatus) {
 
-        Appointment appointment = appointmentRepository.findById(id)
+        Appointment appointment = appointmentRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "Appointment not found with ID: " + id
@@ -51,6 +51,17 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
     public List<Appointment> getAppointmentsByStatus(String status) {
-        return appointmentRepository.findByStatus(status);
+        return appointmentRepository.findByStatusAndDeletedFalseOrderByCreatedAtDescIdDesc(status);
+    }
+
+    public void softDeleteAppointment(Long id) {
+        Appointment appointment = appointmentRepository.findByIdAndDeletedFalse(id)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Appointment not found with ID: " + id
+                ));
+
+        appointment.setDeleted(true);
+        appointmentRepository.save(appointment);
     }
 }

@@ -64,15 +64,7 @@ public class UserController {
                 .findFirst()
                 .orElseThrow();
 
-        if (currentRole != UserRole.ADMIN
-                && currentRole != UserRole.DOCTOR) {
-            throw new org.springframework.web.server.ResponseStatusException(
-                    org.springframework.http.HttpStatus.FORBIDDEN,
-                    "You are not allowed to view user accounts"
-            );
-        }
-
-        return userService.getAllUsers().stream()
+        return userService.getUsersVisibleTo(currentRole).stream()
                 .map(user -> Map.<String, Object>of(
                         "id", user.getId(),
                         "name", user.getFullName(),
@@ -82,6 +74,7 @@ public class UserController {
                 ))
                 .toList();
     }
+
     @PatchMapping("/{id}/status")
     public Map<String, Object> updateUserStatus(
             @PathVariable Long id,
@@ -107,5 +100,22 @@ public class UserController {
                 "role", updatedUser.getRole().name(),
                 "enabled", updatedUser.isEnabled()
         );
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(
+            @PathVariable Long id,
+            Authentication authentication) {
+
+        UserRole currentRole = authentication.getAuthorities().stream()
+                .map(authority -> authority.getAuthority())
+                .filter(authority -> authority.startsWith("ROLE_"))
+                .map(authority -> UserRole.valueOf(
+                        authority.substring("ROLE_".length())))
+                .findFirst()
+                .orElseThrow();
+
+        userService.softDeleteUser(id, currentRole, authentication.getName());
     }
 }

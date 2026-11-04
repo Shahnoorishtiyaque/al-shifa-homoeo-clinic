@@ -25,6 +25,9 @@ public class SecurityConfig {
             throws Exception {
 
         http
+                // Enable CORS
+                .cors(Customizer.withDefaults())
+
                 .csrf(csrf -> csrf.disable())
 
                 .sessionManagement(session -> session
@@ -33,13 +36,16 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
+                        // Allow CORS preflight requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
                         // Patients can book appointments without logging in
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/appointments"
                         ).permitAll()
 
-                        // Only ADMIN, DOCTOR, and STAFF can view appointments
+                        // Only ADMIN, DOCTOR, STAFF can view appointments
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/api/appointments",
@@ -51,13 +57,29 @@ public class SecurityConfig {
                                 HttpMethod.PATCH,
                                 "/api/appointments/**"
                         ).hasAnyRole("ADMIN", "DOCTOR")
+
+                        // ADMIN and DOCTOR can soft-delete appointments
+                        .requestMatchers(
+                                HttpMethod.DELETE,
+                                "/api/appointments/**"
+                        ).hasAnyRole("ADMIN", "DOCTOR")
+
+                        // ADMIN and DOCTOR can create users
                         .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/users"
                         ).hasAnyRole("ADMIN", "DOCTOR")
+
+                        // ADMIN and DOCTOR can enable/disable users
                         .requestMatchers(
                                 HttpMethod.PATCH,
                                 "/api/users/*/status"
+                        ).hasAnyRole("ADMIN", "DOCTOR")
+
+                        // ADMIN and DOCTOR can soft-delete user accounts
+                        .requestMatchers(
+                                HttpMethod.DELETE,
+                                "/api/users/*"
                         ).hasAnyRole("ADMIN", "DOCTOR")
 
                         // Everything else requires authentication

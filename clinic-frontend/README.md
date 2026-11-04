@@ -1,16 +1,37 @@
-# React + Vite
+# Al Shifa Homoeo Clinic frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React, Vite, Tailwind CSS, React Router, Axios, and Lucide React frontend for the existing Spring Boot clinic API.
 
-Currently, two official plugins are available:
+## Run locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Start the clinic backend at `http://localhost:8080`.
+2. Copy `.env.example` to `.env` (or create a `.env.local`) and set `VITE_API_BASE_URL` to the backend origin.
+3. Run `npm install`, then `npm run dev`.
 
-## React Compiler
+For a production build, run `npm run build`; preview it with `npm run preview`. Run `npm run lint` for ESLint.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Deploy to Vercel
 
-## Expanding the ESLint configuration
+Import `clinic-frontend/` as the Vercel project root. The Vite defaults are build command `npm run build` and output directory `dist`. Set this environment variable in Vercel for each environment:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+VITE_API_BASE_URL=https://your-deployed-backend-origin
+```
+
+Use the backend's origin only, without a trailing `/api`. Vite embeds `VITE_` values into the frontend bundle, so this variable is a public API URL and must not contain secrets.
+
+## Backend integration notes
+
+- Public booking uses `POST /api/appointments` and the DTO fields `patientName`, `phone`, `appointmentDate`, `appointmentTime`, and optional `reason`. Time is sent as `HH:mm:ss`; new requests are `PENDING`.
+- Staff authentication uses the backend's HTTP Basic mechanism and `GET /api/auth/me`. Credentials remain in memory for the current page session; refreshing the page requires signing in again.
+- Use HTTPS for the deployed backend because HTTP Basic credentials must be protected in transit.
+- `ADMIN`, `DOCTOR`, and `STAFF` can view appointments. `ADMIN` and `DOCTOR` can update appointment statuses.
+- The backend does not currently configure CORS. For separate local/Vercel origins, configure the backend to allow the exact frontend origin, `GET`, `POST`, `PATCH`, preflight `OPTIONS`, and the `Authorization` and `Content-Type` headers. The frontend does not change backend configuration.
+- The project contains no clinic phone number or detailed treatment descriptions; the site does not invent either.
+
+## Routes
+
+- `/` — clinic home
+- `/about`, `/services`, `/contact` — public clinic information
+- `/appointment` — public appointment request
+- `/staff/login`, `/staff/appointments` — staff dashboard

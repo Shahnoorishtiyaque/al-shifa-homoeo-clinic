@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Entity
 @Table(name = "appointments")
@@ -31,10 +32,20 @@ public class Appointment {
     @Column(length = 20)
     private String status = "PENDING";
 
-    @Column(name = "created_at", insertable = false, updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private boolean deleted = false;
+
     public Appointment() {
+    }
+
+    @PrePersist
+    protected void setCreatedAtOnCreate() {
+        if (createdAt == null) {
+            createdAt = LocalDateTime.now(ZoneId.of("Asia/Kolkata"));
+        }
     }
 
     public Long getId() {
@@ -99,5 +110,13 @@ public class Appointment {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 }

@@ -44,6 +44,13 @@ public class AppointmentController {
                 request.getStatus()
         );
     }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void softDeleteAppointment(@PathVariable Long id) {
+        appointmentService.softDeleteAppointment(id);
+    }
+
     @GetMapping("/status/{status}")
     public List<Appointment> getAppointmentsByStatus(
             @PathVariable String status) {
