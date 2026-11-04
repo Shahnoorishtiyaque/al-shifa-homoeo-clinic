@@ -18,7 +18,8 @@ public class CorsConfig {
 
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:5173",
-                "http://localhost:5175"
+                "http://localhost:5175",
+                "https://al-shifa-homoeo-clinic.vercel.app"
         ));
 
         configuration.setAllowedMethods(List.of(
