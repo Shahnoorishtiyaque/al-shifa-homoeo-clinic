@@ -16,6 +16,7 @@ Import `clinic-frontend/` as the Vercel project root. The Vite defaults are buil
 
 ```text
 VITE_API_BASE_URL=https://your-deployed-backend-origin
+VITE_CLINIC_WHATSAPP_NUMBER=917547899822
 ```
 
 Use the backend's origin only, without a trailing `/api`. Vite embeds `VITE_` values into the frontend bundle, so this variable is a public API URL and must not contain secrets.
@@ -27,7 +28,8 @@ Use the backend's origin only, without a trailing `/api`. Vite embeds `VITE_` va
 - Use HTTPS for the deployed backend because HTTP Basic credentials must be protected in transit.
 - `ADMIN`, `DOCTOR`, and `STAFF` can view appointments. `ADMIN` and `DOCTOR` can update appointment statuses.
 - The backend does not currently configure CORS. For separate local/Vercel origins, configure the backend to allow the exact frontend origin, `GET`, `POST`, `PATCH`, preflight `OPTIONS`, and the `Authorization` and `Content-Type` headers. The frontend does not change backend configuration.
-- The project contains no clinic phone number or detailed treatment descriptions; the site does not invent either.
+- WhatsApp booking uses the same POST /api/appointments request and then opens a prefilled WhatsApp message after the API confirms the save. Set VITE_CLINIC_WHATSAPP_NUMBER to the clinic number using country code and digits only. The current number is 917547899822.
+- The public website describes in-clinic visits only; it does not offer online consultations.
 
 ## Routes
 
