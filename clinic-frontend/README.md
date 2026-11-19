@@ -1,4 +1,4 @@
-# Al Shifa Homoeo Clinic frontend
+# Al Shifa Homeo Clinic frontend
 
 React, Vite, Tailwind CSS, React Router, Axios, and Lucide React frontend for the existing Spring Boot clinic API.
 

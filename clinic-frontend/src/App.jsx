@@ -8,7 +8,7 @@ import UserManagement from './pages/UserManagement.jsx'
 import { Button, Field, Notice, Spinner, StatusBadge } from './components/ui.jsx'
 
 const clinic = {
-  name: 'Al Shifa Homoeo Clinic',
+  name: 'Al Shifa Homeo Clinic',
   address: 'Azizul Complex, Kolasi, Katihar, Bihar',
   hours: '10:00 AM – 7:00 PM',
   whatsapp: (import.meta.env.VITE_CLINIC_WHATSAPP_NUMBER || '917547899822').replace(/\D/g, ''),
@@ -53,7 +53,7 @@ function buildPatientWhatsAppUrl(appointment) {
   const message = [
     'Hello ' + (appointment.patientName || 'there') + ',',
     '',
-    'This is Al Shifa Homoeo Clinic with an update on your appointment request.',
+    'This is Al Shifa Homeo Clinic with an update on your appointment request.',
     '',
     'Status: ' + status,
     'Appointment date: ' + formatAppointmentDate(appointment.appointmentDate),
@@ -63,7 +63,7 @@ function buildPatientWhatsAppUrl(appointment) {
       ? 'Your appointment is confirmed. Please contact us if you need any help.'
       : 'Please contact the clinic if you have any questions.',
     '',
-    'Al Shifa Homoeo Clinic',
+    'Al Shifa Homeo Clinic',
   ].join('\n')
   return 'https://wa.me/' + internationalPhone + '?text=' + encodeURIComponent(message)
 }
@@ -101,7 +101,7 @@ function Footer() {
       <div><h3>Explore</h3><Link to="/about">About the clinic</Link><Link to="/services">Treatments & services</Link><Link to="/clinic">Clinic location</Link><Link to="/appointment">Book an appointment</Link><Link to="/reviews">Patient reviews</Link><Link to="/gallery">Gallery</Link><Link to="/faq">FAQs</Link><Link to="/contact">Contact</Link></div>
       <div><h3>Visit our clinic</h3><p><MapPin size={16}/>{clinic.address}</p><p><Clock3 size={16}/>{clinic.hours}</p><p><MessageCircle size={16}/>{formatWhatsAppNumber()}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={15}/></a></div>
     </div>
-    <div className="ref-footer-bottom"><span>© {new Date().getFullYear()} Al Shifa Homoeo Clinic</span><Link to="/staff/login">Staff access</Link></div>
+    <div className="ref-footer-bottom"><span>© {new Date().getFullYear()} Al Shifa Homeo Clinic</span><Link to="/staff/login">Staff access</Link></div>
   </footer>
 }
 
@@ -126,7 +126,7 @@ function Home() {
       <div className="ref-hero-inner">
         <div className="ref-hero-copy">
           <span className="ref-kicker"><i/> WELCOME TO HOMOEOPATHIC CARE</span>
-          <h1>Al Shifa <em>Homoeo Clinic</em></h1>
+          <h1>Al Shifa <em>Homeo Clinic</em></h1>
           <p>Patient-focused homoeopathic care at our clinic in Kolasi, Katihar, with two doctors welcoming you for in-person visits.</p>
           <AppointmentButtons/>
           <div className="ref-hero-languages"><HeartHandshake size={17}/><span>Respectful, family-focused clinic visits</span></div>
@@ -153,7 +153,7 @@ function Home() {
         <div className="ref-section-heading"><span className="ref-eyebrow">ABOUT THE DOCTORS</span><h2>Meet your Al Shifa doctors.</h2><p>Two homoeopathic doctors at one welcoming clinic in Kolasi, Katihar.</p></div>
         <div className="ref-about-doctor-grid">{clinic.doctors.map((doctor) => <article className="ref-about-doctor" key={doctor.name}>
           <div className="ref-about-doctor-image"><img src={doctor.image} alt={doctor.name}/></div>
-          <span className="ref-eyebrow">AL SHIFA HOMOEO CLINIC</span><h2>{doctor.name}</h2><p className="ref-about-doctor-role">{doctor.title}</p>
+          <span className="ref-eyebrow">AL SHIFA HOMEO CLINIC</span><h2>{doctor.name}</h2><p className="ref-about-doctor-role">{doctor.title}</p>
           <p>Welcoming patients for in-person appointments at our Kolasi clinic.</p>
           <div className="ref-credential-grid"><div><Stethoscope size={19}/><span>{doctor.qualification}</span></div><div><ShieldCheck size={19}/><span>Reg. No. {doctor.registration}</span></div><div><Activity size={19}/><span>{doctor.experience}</span></div><div><MessageCircle size={19}/><span>{doctor.languages}</span></div>{doctor.focus && <div className="ref-doctor-focus"><HeartHandshake size={19}/><span>{doctor.focus}</span></div>}{doctor.title.includes('Government') && <div><MapPin size={19}/><span>{doctor.title}</span></div>}</div>
         </article>)}</div>
@@ -163,8 +163,8 @@ function Home() {
 
     <section className="ref-location ref-section" id="chambers">
       <div className="ref-container ref-location-grid">
-        <div className="ref-location-copy"><span className="ref-eyebrow">OUR CLINIC</span><h2>One welcoming place to visit.</h2><p>Find Al Shifa Homoeo Clinic at Azizul Complex in Kolasi, Katihar. Send an appointment request to plan your visit.</p><AppointmentButtons compact/></div>
-        <article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">VISIT OUR CLINIC</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article>
+        <div className="ref-location-copy"><span className="ref-eyebrow">OUR CLINIC</span><h2>One welcoming place to visit.</h2><p>Find Al Shifa Homeo Clinic at Azizul Complex in Kolasi, Katihar. Send an appointment request to plan your visit.</p><AppointmentButtons compact/></div>
+        <article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">VISIT OUR CLINIC</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article>
       </div>
     </section>
 
@@ -182,7 +182,7 @@ function Home() {
       <div className="ref-feedback-mark">“</div><span className="ref-eyebrow">PATIENT FEEDBACK</span><h2>Your experience matters to us.</h2><p>We don’t publish patient testimonials on this site yet. If you’ve visited Al Shifa, you can share feedback with the clinic.</p><a className="ref-text-link" href={mapUrl} target="_blank" rel="noreferrer">Find us on Google Maps <ArrowUpRight size={16}/></a>
     </section>
 
-    <section className="ref-home-map ref-section"><div className="ref-container"><div className="ref-section-heading"><span className="ref-eyebrow">FIND OUR CLINIC</span><h2>One address, here in Kolasi.</h2><p>Visit Al Shifa Homoeo Clinic at Azizul Complex, Kolasi, Katihar, Bihar.</p></div><a className="ref-map-link-card" href={mapUrl} target="_blank" rel="noreferrer"><MapPin size={23}/><span><strong>{clinic.address}</strong><small>Open the location in Google Maps</small></span><ArrowUpRight size={18}/></a></div></section>
+    <section className="ref-home-map ref-section"><div className="ref-container"><div className="ref-section-heading"><span className="ref-eyebrow">FIND OUR CLINIC</span><h2>One address, here in Kolasi.</h2><p>Visit Al Shifa Homeo Clinic at Azizul Complex, Kolasi, Katihar, Bihar.</p></div><a className="ref-map-link-card" href={mapUrl} target="_blank" rel="noreferrer"><MapPin size={23}/><span><strong>{clinic.address}</strong><small>Open the location in Google Maps</small></span><ArrowUpRight size={18}/></a></div></section>
     <section className="ref-final-cta"><div className="ref-container"><span className="ref-eyebrow">YOUR VISIT TO AL SHIFA</span><h2>We look forward to welcoming you.</h2><p>Choose how you would like to request a clinic appointment.</p><AppointmentButtons/></div></section>
   </main>
 }
@@ -194,7 +194,7 @@ function PageIntro({ eyebrow, title, copy, variant = '' }) {
 function About() {
   return <main className="ref-inner-page">
     <PageIntro eyebrow="ABOUT THE DOCTORS" title="The doctors at Al Shifa." copy="Meet the two homoeopathic doctors at our Kolasi clinic."/>
-    <section className="ref-section ref-about-doctors-section"><div className="ref-container"><div className="ref-about-doctor-grid">{clinic.doctors.map((doctor)=><article className="ref-about-doctor" key={doctor.name}><div className="ref-about-doctor-image"><img src={doctor.image} alt={doctor.name}/></div><span className="ref-eyebrow">ABOUT THE DOCTOR</span><h2>{doctor.name}</h2><p className="ref-about-doctor-role">{doctor.title}</p><p>Part of the Al Shifa Homoeo Clinic team, welcoming patients for in-person appointments in Kolasi, Katihar.</p><div className="ref-credential-grid"><div><Stethoscope size={19}/><span>{doctor.qualification}</span></div><div><ShieldCheck size={19}/><span>Reg. No. {doctor.registration}</span></div><div><Activity size={19}/><span>{doctor.experience}</span></div><div><MessageCircle size={19}/><span>{doctor.languages}</span></div>{doctor.focus && <div className="ref-doctor-focus"><HeartHandshake size={19}/><span>{doctor.focus}</span></div>}{doctor.title.includes('Government') && <div><MapPin size={19}/><span>{doctor.title}</span></div>}</div></article>)}</div><div className="ref-about-cta"><span className="ref-eyebrow">ONE CLINIC · TWO DOCTORS</span><h2>A warm welcome, and time to be heard.</h2><p>Contact Al Shifa to ask about your concern and current appointment availability.</p><AppointmentButtons compact/></div></div></section>
+    <section className="ref-section ref-about-doctors-section"><div className="ref-container"><div className="ref-about-doctor-grid">{clinic.doctors.map((doctor)=><article className="ref-about-doctor" key={doctor.name}><div className="ref-about-doctor-image"><img src={doctor.image} alt={doctor.name}/></div><span className="ref-eyebrow">ABOUT THE DOCTOR</span><h2>{doctor.name}</h2><p className="ref-about-doctor-role">{doctor.title}</p><p>Part of the Al Shifa Homeo Clinic team, welcoming patients for in-person appointments in Kolasi, Katihar.</p><div className="ref-credential-grid"><div><Stethoscope size={19}/><span>{doctor.qualification}</span></div><div><ShieldCheck size={19}/><span>Reg. No. {doctor.registration}</span></div><div><Activity size={19}/><span>{doctor.experience}</span></div><div><MessageCircle size={19}/><span>{doctor.languages}</span></div>{doctor.focus && <div className="ref-doctor-focus"><HeartHandshake size={19}/><span>{doctor.focus}</span></div>}{doctor.title.includes('Government') && <div><MapPin size={19}/><span>{doctor.title}</span></div>}</div></article>)}</div><div className="ref-about-cta"><span className="ref-eyebrow">ONE CLINIC · TWO DOCTORS</span><h2>A warm welcome, and time to be heard.</h2><p>Contact Al Shifa to ask about your concern and current appointment availability.</p><AppointmentButtons compact/></div></div></section>
   </main>
 }
 
@@ -219,26 +219,26 @@ function Services() {
 function ClinicPage() {
   return <main className="ref-inner-page">
     <PageIntro eyebrow="OUR CLINIC" title="Visit Al Shifa in Kolasi." copy="One clinic location for in-person appointments, with two doctors to welcome you."/>
-    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">ONE CLINIC LOCATION</span><h2>Plan your visit to Kolasi.</h2><p>Al Shifa Homoeo Clinic is at {clinic.address}. Current clinic hours are {clinic.hours}. Appointment requests remain pending until clinic staff confirms the details.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article></div></section>
+    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">ONE CLINIC LOCATION</span><h2>Plan your visit to Kolasi.</h2><p>Al Shifa Homeo Clinic is at {clinic.address}. Current clinic hours are {clinic.hours}. Appointment requests remain pending until clinic staff confirms the details.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article></div></section>
   </main>
 }
 
 function ReviewsPage() {
-  return <main className="ref-inner-page"><PageIntro eyebrow="PATIENT REVIEWS" title="Your experience matters." copy="We want every patient to feel welcome and heard at Al Shifa Homoeo Clinic."/><section className="ref-section ref-review-page"><div className="ref-container"><div className="ref-review-card"><div className="ref-feedback-mark">“</div><span className="ref-eyebrow">PATIENT FEEDBACK</span><h2>Reviews will appear here when available.</h2><p>We don’t display testimonials or ratings until verified patient feedback is available. If you’ve visited the clinic, you can find Al Shifa on Google Maps and share your experience.</p><a className="ref-button ref-button-gold" href={mapUrl} target="_blank" rel="noreferrer">Find us on Google Maps <ArrowUpRight size={16}/></a></div></div></section></main>
+  return <main className="ref-inner-page"><PageIntro eyebrow="PATIENT REVIEWS" title="Your experience matters." copy="We want every patient to feel welcome and heard at Al Shifa Homeo Clinic."/><section className="ref-section ref-review-page"><div className="ref-container"><div className="ref-review-card"><div className="ref-feedback-mark">“</div><span className="ref-eyebrow">PATIENT FEEDBACK</span><h2>Reviews will appear here when available.</h2><p>We don’t display testimonials or ratings until verified patient feedback is available. If you’ve visited the clinic, you can find Al Shifa on Google Maps and share your experience.</p><a className="ref-button ref-button-gold" href={mapUrl} target="_blank" rel="noreferrer">Find us on Google Maps <ArrowUpRight size={16}/></a></div></div></section></main>
 }
 
 function GalleryPage() {
-  return <main className="ref-inner-page"><PageIntro eyebrow="GALLERY" title="Meet the Al Shifa team." copy="A look at the doctor photos and clinic identity currently provided for the website."/><section className="ref-section"><div className="ref-container"><div className="ref-gallery-grid">{clinic.doctors.map((doctor,index)=><figure className={'ref-gallery-item ref-gallery-item-' + index} key={doctor.name}><img src={doctor.image} alt={doctor.name}/><figcaption><small>AL SHIFA HOMOEO CLINIC</small><strong>{doctor.name}</strong></figcaption></figure>)}<figure className="ref-gallery-item ref-gallery-logo"><div><img src="/clinic-logo.jpeg" alt="Al Shifa Homoeo Clinic logo"/></div><figcaption><small>ONE CLINIC · KOLASI, KATIHAR</small><strong>Al Shifa Homoeo Clinic</strong></figcaption></figure></div></div></section></main>
+  return <main className="ref-inner-page"><PageIntro eyebrow="GALLERY" title="Meet the Al Shifa team." copy="A look at the doctor photos and clinic identity currently provided for the website."/><section className="ref-section"><div className="ref-container"><div className="ref-gallery-grid">{clinic.doctors.map((doctor,index)=><figure className={'ref-gallery-item ref-gallery-item-' + index} key={doctor.name}><img src={doctor.image} alt={doctor.name}/><figcaption><small>AL SHIFA HOMEO CLINIC</small><strong>{doctor.name}</strong></figcaption></figure>)}<figure className="ref-gallery-item ref-gallery-logo"><div><img src="/clinic-logo.jpeg" alt="Al Shifa Homeo Clinic logo"/></div><figcaption><small>ONE CLINIC · KOLASI, KATIHAR</small><strong>Al Shifa Homeo Clinic</strong></figcaption></figure></div></div></section></main>
 }
 
 function FaqPage() {
-  return <main className="ref-inner-page"><PageIntro eyebrow="FREQUENTLY ASKED QUESTIONS" title="Answers before your visit." copy="Details about appointment requests, clinic visits, and contacting Al Shifa Homoeo Clinic."/><section className="ref-section ref-faq-section"><div className="ref-container"><div className="ref-faq-list"><details><summary>Does the clinic offer online consultations?<ChevronDown size={17}/></summary><p>No. Al Shifa Homoeo Clinic provides in-person clinic appointments only.</p></details><details><summary>Is my appointment confirmed when I submit the form?<ChevronDown size={17}/></summary><p>No. Submitting the form sends an appointment request. It remains pending until clinic staff confirms it.</p></details><details><summary>Can I book through WhatsApp?<ChevronDown size={17}/></summary><p>Yes. Submit your appointment request first, then continue to WhatsApp to send the pre-filled message.</p></details><details><summary>Where is the clinic?<ChevronDown size={17}/></summary><p>Al Shifa Homoeo Clinic is at {clinic.address}.</p></details><details><summary>What are the clinic hours?<ChevronDown size={17}/></summary><p>The current listed hours are {clinic.hours}. Please wait for staff confirmation of your requested appointment.</p></details><details><summary>Can I walk in without an appointment?<ChevronDown size={17}/></summary><p>Please contact the clinic to check availability before visiting.</p></details></div></div></section></main>
+  return <main className="ref-inner-page"><PageIntro eyebrow="FREQUENTLY ASKED QUESTIONS" title="Answers before your visit." copy="Details about appointment requests, clinic visits, and contacting Al Shifa Homeo Clinic."/><section className="ref-section ref-faq-section"><div className="ref-container"><div className="ref-faq-list"><details><summary>Does the clinic offer online consultations?<ChevronDown size={17}/></summary><p>No. Al Shifa Homeo Clinic provides in-person clinic appointments only.</p></details><details><summary>Is my appointment confirmed when I submit the form?<ChevronDown size={17}/></summary><p>No. Submitting the form sends an appointment request. It remains pending until clinic staff confirms it.</p></details><details><summary>Can I book through WhatsApp?<ChevronDown size={17}/></summary><p>Yes. Submit your appointment request first, then continue to WhatsApp to send the pre-filled message.</p></details><details><summary>Where is the clinic?<ChevronDown size={17}/></summary><p>Al Shifa Homeo Clinic is at {clinic.address}.</p></details><details><summary>What are the clinic hours?<ChevronDown size={17}/></summary><p>The current listed hours are {clinic.hours}. Please wait for staff confirmation of your requested appointment.</p></details><details><summary>Can I walk in without an appointment?<ChevronDown size={17}/></summary><p>Please contact the clinic to check availability before visiting.</p></details></div></div></section></main>
 }
 
 function Contact() {
   return <main className="ref-inner-page">
     <PageIntro eyebrow="CONTACT AL SHIFA" title="We’d be glad to welcome you." copy="Find our single clinic location in Kolasi, Katihar, or send an appointment request."/>
-    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">VISIT OUR CLINIC</span><h2>One clinic, here in Kolasi.</h2><p>We are located at Azizul Complex, Kolasi, Katihar, Bihar. Use the map link for directions or send an appointment request online or by WhatsApp.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><p><MessageCircle size={16}/>{formatWhatsAppNumber()} · WhatsApp booking</p><Link className="ref-contact-book" to="/appointment?mode=whatsapp">Request by WhatsApp <ArrowUpRight size={16}/></Link><a href={mapUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={16}/></a></div></article></div></section>
+    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">VISIT OUR CLINIC</span><h2>One clinic, here in Kolasi.</h2><p>We are located at Azizul Complex, Kolasi, Katihar, Bihar. Use the map link for directions or send an appointment request online or by WhatsApp.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><p><MessageCircle size={16}/>{formatWhatsAppNumber()} · WhatsApp booking</p><Link className="ref-contact-book" to="/appointment?mode=whatsapp">Request by WhatsApp <ArrowUpRight size={16}/></Link><a href={mapUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={16}/></a></div></article></div></section>
   </main>
 }
 
@@ -253,7 +253,7 @@ function localDateValue(date = new Date()) {
 
 function buildWhatsAppUrl(booking) {
   const message = [
-    'Hello Al Shifa Homoeo Clinic,',
+    'Hello Al Shifa Homeo Clinic,',
     '',
     'I would like to request an appointment.',
     '',
@@ -355,7 +355,7 @@ function Appointment() {
     <PageIntro eyebrow="YOUR VISIT" title="Let’s plan your clinic visit." copy="Choose how you would like to send your appointment request. All requests stay pending until confirmed by clinic staff."/>
     <section className="ref-section ref-appointment-area">
       <div className="ref-container ref-appointment-layout">
-        <aside className="ref-appointment-aside"><span className="ref-eyebrow">BOOK A VISIT</span><h2>A few details to get started.</h2><p>Your appointment will be requested at our Kolasi clinic. Choose a date that works for you.</p><div><MapPin size={18}/><span><strong>Al Shifa Homoeo Clinic</strong><small>{clinic.address}</small></span></div><div><Clock3 size={18}/><span><strong>Clinic hours</strong><small>{clinic.hours}</small></span></div></aside>
+        <aside className="ref-appointment-aside"><span className="ref-eyebrow">BOOK A VISIT</span><h2>A few details to get started.</h2><p>Your appointment will be requested at our Kolasi clinic. Choose a date that works for you.</p><div><MapPin size={18}/><span><strong>Al Shifa Homeo Clinic</strong><small>{clinic.address}</small></span></div><div><Clock3 size={18}/><span><strong>Clinic hours</strong><small>{clinic.hours}</small></span></div></aside>
         <form className="ref-form-card" onSubmit={submit} noValidate>
           <span className="ref-eyebrow">APPOINTMENT REQUEST</span><h2>Choose a booking option</h2><p className="ref-form-intro">Your appointment is not confirmed until clinic staff reviews your request.</p>
           <div className="ref-booking-options" role="group" aria-label="Appointment booking method">
