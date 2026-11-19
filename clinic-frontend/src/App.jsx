@@ -13,7 +13,7 @@ const clinic = {
   hours: '10:00 AM – 7:00 PM',
   whatsapp: (import.meta.env.VITE_CLINIC_WHATSAPP_NUMBER || '917547899822').replace(/\D/g, ''),
   doctors: [
-    { name: 'Dr. Sharif', image: '/dr-sharif.jpeg', title: 'Homoeopathic Doctor', qualification: 'B.H.M.S. (BU)', registration: '33121', experience: '5+ Years Experience', languages: 'Hindi · English · Bengali · Urdu' },
+    { name: 'Dr. M. Sharif', image: '/dr-sharif.jpeg', title: 'Homoeopathic Doctor', qualification: 'B.H.M.S. (BU)', registration: '33121', experience: '5+ Years Experience', languages: 'Hindi · English · Bengali · Urdu' },
     { name: 'Dr. Farha Nishat', image: '/dr-farha-nishat.jpeg', title: 'Medical Officer · Government of Bihar', qualification: 'B.H.M.S. (BU)', registration: '33105', experience: '5+ Years Experience', languages: 'Hindi · English · Bengali · Urdu', focus: 'Chronic disease and child specialist' },
   ],
 }
