@@ -146,7 +146,7 @@ function Home() {
     </section>
 
     <section className="ref-facts" aria-label="Clinic information">
-      <div><strong>02</strong><span>DOCTORS</span></div><div><strong>01</strong><span>CLINIC LOCATION</span></div><div><strong>02</strong><span>WAYS TO BOOK</span></div><div><strong>10–7</strong><span>CLINIC HOURS</span></div>
+      <div><strong>2</strong><span>DOCTORS</span></div><div><strong>1</strong><span>CLINIC LOCATION</span></div><div><strong>1000+</strong><span>HAPPY PATIENT</span></div><div><strong>99%</strong><span>PATIENT SATISFACTION</span></div>
     </section>
 
     <section className="ref-doctors ref-section" id="about">
