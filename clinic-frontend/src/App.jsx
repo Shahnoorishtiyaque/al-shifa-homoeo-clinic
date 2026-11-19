@@ -84,6 +84,7 @@ function Header() {
           {links.map(([to, label]) => <Link key={to} className={to === '/' && location.pathname === '/' ? 'active' : ''} to={to} onClick={() => setOpen(false)}>{label}</Link>)}
           <Link className="ref-nav-book" to="/appointment" onClick={() => setOpen(false)}><CalendarDays size={16}/> Book appointment</Link>
           <Link className="ref-nav-whatsapp" to="/appointment?mode=whatsapp" onClick={() => setOpen(false)}><MessageCircle size={16}/> WhatsApp</Link>
+          <Link className="ref-nav-staff" to="/staff/login" onClick={() => setOpen(false)}>Staff login <ArrowUpRight size={14}/></Link>
         </nav>
         <button className="ref-menu" type="button" aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} onClick={() => setOpen(!open)}>{open ? <X/> : <Menu/>}</button>
       </div>
