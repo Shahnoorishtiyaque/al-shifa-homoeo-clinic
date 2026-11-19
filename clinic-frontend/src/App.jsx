@@ -18,7 +18,8 @@ const clinic = {
   ],
 }
 
-const mapUrl = 'https://www.google.com/maps/search/?api=1&query=Azizul+Complex+Kolasi+Katihar+Bihar'
+const mapUrl = 'https://www.google.com/maps/place/Ajijul+Sho+Centre/@25.5784028,87.51263,20z/data=!4m10!1m2!2m1!1sazizul+complex+kolasi+katihar!3m6!1s0x39f001ae17d4fc71:0x2f02ff3f267ad115!8m2!3d25.5784028!4d87.5129539!15sCh1heml6dWwgY29tcGxleCBrb2xhc2kga2F0aWhhcpIBCnNob2Vfc3RvcmXgAQA!16s%2Fg%2F11vq__l63t?entry=ttu&g_ep=EgoyMDI2MTExNi4wIKXMDSoASAFQAw%3D%3D'
+const mapEmbedUrl = 'https://maps.google.com/maps?output=embed&q=25.5784028,87.5129539&z=18'
 
 function formatWhatsAppNumber() {
   const digits = clinic.whatsapp
@@ -163,7 +164,7 @@ function Home() {
     <section className="ref-location ref-section" id="chambers">
       <div className="ref-container ref-location-grid">
         <div className="ref-location-copy"><span className="ref-eyebrow">OUR CLINIC</span><h2>One welcoming place to visit.</h2><p>Find Al Shifa Homoeo Clinic at Azizul Complex in Kolasi, Katihar. Send an appointment request to plan your visit.</p><AppointmentButtons compact/></div>
-        <article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src="https://maps.google.com/maps?q=Azizul%20Complex%2C%20Kolasi%2C%20Katihar%2C%20Bihar&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">VISIT OUR CLINIC</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article>
+        <article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">VISIT OUR CLINIC</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article>
       </div>
     </section>
 
@@ -218,7 +219,7 @@ function Services() {
 function ClinicPage() {
   return <main className="ref-inner-page">
     <PageIntro eyebrow="OUR CLINIC" title="Visit Al Shifa in Kolasi." copy="One clinic location for in-person appointments, with two doctors to welcome you."/>
-    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">ONE CLINIC LOCATION</span><h2>Plan your visit to Kolasi.</h2><p>Al Shifa Homoeo Clinic is at {clinic.address}. Current clinic hours are {clinic.hours}. Appointment requests remain pending until clinic staff confirms the details.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src="https://maps.google.com/maps?q=Azizul%20Complex%2C%20Kolasi%2C%20Katihar%2C%20Bihar&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article></div></section>
+    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">ONE CLINIC LOCATION</span><h2>Plan your visit to Kolasi.</h2><p>Al Shifa Homoeo Clinic is at {clinic.address}. Current clinic hours are {clinic.hours}. Appointment requests remain pending until clinic staff confirms the details.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><a href={mapUrl} target="_blank" rel="noreferrer">Get directions <ArrowUpRight size={16}/></a></div></article></div></section>
   </main>
 }
 
@@ -237,7 +238,7 @@ function FaqPage() {
 function Contact() {
   return <main className="ref-inner-page">
     <PageIntro eyebrow="CONTACT AL SHIFA" title="We’d be glad to welcome you." copy="Find our single clinic location in Kolasi, Katihar, or send an appointment request."/>
-    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">VISIT OUR CLINIC</span><h2>One clinic, here in Kolasi.</h2><p>We are located at Azizul Complex, Kolasi, Katihar, Bihar. Use the map link for directions or send an appointment request online or by WhatsApp.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src="https://maps.google.com/maps?q=Azizul%20Complex%2C%20Kolasi%2C%20Katihar%2C%20Bihar&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><p><MessageCircle size={16}/>{formatWhatsAppNumber()} · WhatsApp booking</p><Link className="ref-contact-book" to="/appointment?mode=whatsapp">Request by WhatsApp <ArrowUpRight size={16}/></Link><a href={mapUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={16}/></a></div></article></div></section>
+    <section className="ref-section"><div className="ref-container ref-contact-grid"><div><span className="ref-eyebrow">VISIT OUR CLINIC</span><h2>One clinic, here in Kolasi.</h2><p>We are located at Azizul Complex, Kolasi, Katihar, Bihar. Use the map link for directions or send an appointment request online or by WhatsApp.</p><AppointmentButtons compact/></div><article className="ref-address-card"><iframe className="ref-contact-map" title="Map to Al Shifa Homoeo Clinic, Kolasi" src={mapEmbedUrl} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="ref-address-details"><span className="ref-eyebrow">ADDRESS & HOURS</span><h3>{clinic.address}</h3><p><Clock3 size={16}/>{clinic.hours}</p><p><MessageCircle size={16}/>{formatWhatsAppNumber()} · WhatsApp booking</p><Link className="ref-contact-book" to="/appointment?mode=whatsapp">Request by WhatsApp <ArrowUpRight size={16}/></Link><a href={mapUrl} target="_blank" rel="noreferrer">Open in Google Maps <ArrowUpRight size={16}/></a></div></article></div></section>
   </main>
 }
 
